@@ -1,0 +1,200 @@
+<html>
+<head>
+    <title>College Fest Management</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        header {
+            background: #39216b;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background: #241344;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .hero {
+            background: #e5dcff;
+            padding: 40px 20px;
+        }
+
+        .events {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            width: 220px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ccc;
+        }
+
+        button {
+            background: #39216b;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6242a5;
+        }
+
+        form {
+            max-width: 350px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #241344;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🎉 COLLEGE FEST 2026 🎉</h1>
+        <p>Celebrate Talent, Creativity and Innovation!</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#register">Register</a>
+    </nav>
+
+    <section class="hero" id="home">
+        <h2>Welcome to Our College Fest</h2>
+        <p>Join us for an exciting celebration of technology,
+           culture, music and creativity.</p>
+        <p><b>Date:</b> November 20, 2026</p>
+        <button onclick="document.getElementById('register')
+        .scrollIntoView({behavior:'smooth'})">
+            Register Now
+        </button>
+    </section>
+
+    <section id="events">
+        <h2>Our Events</h2>
+
+        <div class="events">
+            <div class="card">
+                <h3>💻 Coding Contest</h3>
+                <p>Show your programming skills.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎤 Singing</h3>
+                <p>Share your musical talent.</p>
+            </div>
+
+            <div class="card">
+                <h3>💃 Dance</h3>
+                <p>Perform your best dance moves.</p>
+            </div>
+
+            <div class="card">
+                <h3>🎨 Art Competition</h3>
+                <p>Show your creativity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="register">
+        <h2>Student Registration</h2>
+
+        <form id="festForm">
+            <label for="name">Student Name:</label>
+            <input type="text" id="name"
+                   placeholder="Enter your name" required>
+
+            <label for="roll">Roll Number:</label>
+            <input type="text" id="roll"
+                   placeholder="Enter roll number" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email"
+                   placeholder="Enter email" required>
+
+            <label for="event">Choose an Event:</label>
+            <select id="event" required>
+                <option value="">Select an event</option>
+                <option>Coding Contest</option>
+                <option>Singing</option>
+                <option>Dance</option>
+                <option>Art Competition</option>
+            </select>
+
+            <button type="submit">Submit Registration</button>
+        </form>
+
+        <p id="message"></p>
+    </section>
+
+    <footer>
+        <p>© 2026 College Fest Management Website</p>
+        <p>Designed by First-Year B.Tech Students</p>
+    </footer>
+
+    <script>
+        document.getElementById("festForm")
+        .addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let selectedEvent =
+                document.getElementById("event").value;
+
+            document.getElementById("message").innerHTML =
+                "Thank you, " + name +
+                "! Your registration for " + selectedEvent +
+                " has been submitted successfully.";
+
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>

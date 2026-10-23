@@ -1,0 +1,204 @@
+<html>
+<head>
+    <title>Bus and Train Ticket Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #154360;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 85%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #cccccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #154360;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #148f77;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #117864;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d5f5e3;
+            border-radius: 5px;
+            display: none;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #555555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Travel Easy</h1>
+        <p>Bus and Train Ticket Booking Interface</p>
+    </header>
+
+    <div class="container">
+        <h2>Book Your Ticket</h2>
+
+        <form id="bookingForm">
+
+            <label for="transport">Select Transport</label>
+            <select id="transport" required>
+                <option value="Bus">Bus</option>
+                <option value="Train">Train</option>
+            </select>
+
+            <label for="from">From</label>
+            <select id="from" required>
+                <option value="Vijayawada">Vijayawada</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+            </select>
+
+            <label for="to">To</label>
+            <select id="to" required>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Vijayawada">Vijayawada</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+            </select>
+
+            <label for="date">Journey Date</label>
+            <input type="date" id="date" required>
+
+            <label for="passengers">Number of Passengers</label>
+            <input type="number" id="passengers"
+                   min="1" max="6" value="1" required>
+
+            <button type="submit">Search and Book</button>
+
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <footer>
+        <p>Student Project | Travel Easy © 2026</p>
+    </footer>
+
+    <script>
+        // Set the minimum journey date to today
+        const dateInput = document.getElementById("date");
+        const today = new Date();
+        const localToday = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+
+        dateInput.min = localToday;
+        dateInput.value = localToday;
+
+        // Handle the booking form
+        document.getElementById("bookingForm")
+            .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const transport =
+                document.getElementById("transport").value;
+            const from =
+                document.getElementById("from").value;
+            const to =
+                document.getElementById("to").value;
+            const date =
+                document.getElementById("date").value;
+            const passengers =
+                Number(document.getElementById("passengers").value);
+
+            if (from === to) {
+                alert("Please select different starting and destination cities.");
+                return;
+            }
+
+            if (passengers < 1 || passengers > 6) {
+                alert("Please select between 1 and 6 passengers.");
+                return;
+            }
+
+            if (date < localToday) {
+                alert("Please select today or a future date.");
+                return;
+            }
+
+            // Sample fares for demonstration only
+            const farePerPerson = transport === "Bus" ? 500 : 350;
+            const totalFare = farePerPerson * passengers;
+
+            const result = document.getElementById("result");
+
+            result.innerHTML = `
+                <h3>Booking Details</h3>
+                <strong>Transport:</strong> ${transport}<br>
+                <strong>From:</strong> ${from}<br>
+                <strong>To:</strong> ${to}<br>
+                <strong>Journey Date:</strong> ${date}<br>
+                <strong>Passengers:</strong> ${passengers}<br>
+                <strong>Fare per Person:</strong> ₹${farePerPerson}<br>
+                <strong>Total Fare:</strong> ₹${totalFare}<br>
+                <p>Demo booking details generated successfully!</p>
+                <small>This is a student demo. No real ticket is booked.</small>
+            `;
+
+            result.style.display = "block";
+        });
+    </script>
+
+</body>
+</html>
