@@ -1,6 +1,9 @@
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>College Fest Management</title>
+
     <style>
         body {
             margin: 0;
@@ -107,13 +110,15 @@
 
     <section class="hero" id="home">
         <h2>Welcome to Our College Fest</h2>
-        <p>Join us for an exciting celebration of technology,
-           culture, music and creativity.</p>
+        <p>
+            Join us for an exciting celebration of technology,
+            culture, music and creativity.
+        </p>
         <p><b>Date:</b> November 20, 2026</p>
-        <button onclick="document.getElementById('register')
-        .scrollIntoView({behavior:'smooth'})">
-            Register Now
-        </button>
+
+        <a href="#register">
+            <button type="button">Register Now</button>
+        </a>
     </section>
 
     <section id="events">
@@ -145,56 +150,36 @@
     <section id="register">
         <h2>Student Registration</h2>
 
-        <form id="festForm">
+        <form action="#" method="get">
             <label for="name">Student Name:</label>
-            <input type="text" id="name"
+            <input type="text" id="name" name="name"
                    placeholder="Enter your name" required>
 
             <label for="roll">Roll Number:</label>
-            <input type="text" id="roll"
+            <input type="text" id="roll" name="roll"
                    placeholder="Enter roll number" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email"
+            <input type="email" id="email" name="email"
                    placeholder="Enter email" required>
 
             <label for="event">Choose an Event:</label>
-            <select id="event" required>
+            <select id="event" name="event" required>
                 <option value="">Select an event</option>
-                <option>Coding Contest</option>
-                <option>Singing</option>
-                <option>Dance</option>
-                <option>Art Competition</option>
+                <option value="Coding Contest">Coding Contest</option>
+                <option value="Singing">Singing</option>
+                <option value="Dance">Dance</option>
+                <option value="Art Competition">Art Competition</option>
             </select>
 
             <button type="submit">Submit Registration</button>
         </form>
-
-        <p id="message"></p>
     </section>
 
     <footer>
         <p>© 2026 College Fest Management Website</p>
         <p>Designed by First-Year B.Tech Students</p>
     </footer>
-
-    <script>
-        document.getElementById("festForm")
-        .addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            let name = document.getElementById("name").value;
-            let selectedEvent =
-                document.getElementById("event").value;
-
-            document.getElementById("message").innerHTML =
-                "Thank you, " + name +
-                "! Your registration for " + selectedEvent +
-                " has been submitted successfully.";
-
-            this.reset();
-        });
-    </script>
 
 </body>
 </html>
