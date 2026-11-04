@@ -1,3 +1,5 @@
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Bus and Train Ticket Booking</title>
@@ -133,72 +135,6 @@
     <footer>
         <p>Student Project | Travel Easy © 2026</p>
     </footer>
-
-    <script>
-        // Set the minimum journey date to today
-        const dateInput = document.getElementById("date");
-        const today = new Date();
-        const localToday = new Date(
-            today.getTime() - today.getTimezoneOffset() * 60000
-        ).toISOString().split("T")[0];
-
-        dateInput.min = localToday;
-        dateInput.value = localToday;
-
-        // Handle the booking form
-        document.getElementById("bookingForm")
-            .addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-            const transport =
-                document.getElementById("transport").value;
-            const from =
-                document.getElementById("from").value;
-            const to =
-                document.getElementById("to").value;
-            const date =
-                document.getElementById("date").value;
-            const passengers =
-                Number(document.getElementById("passengers").value);
-
-            if (from === to) {
-                alert("Please select different starting and destination cities.");
-                return;
-            }
-
-            if (passengers < 1 || passengers > 6) {
-                alert("Please select between 1 and 6 passengers.");
-                return;
-            }
-
-            if (date < localToday) {
-                alert("Please select today or a future date.");
-                return;
-            }
-
-            // Sample fares for demonstration only
-            const farePerPerson = transport === "Bus" ? 500 : 350;
-            const totalFare = farePerPerson * passengers;
-
-            const result = document.getElementById("result");
-
-            result.innerHTML = `
-                <h3>Booking Details</h3>
-                <strong>Transport:</strong> ${transport}<br>
-                <strong>From:</strong> ${from}<br>
-                <strong>To:</strong> ${to}<br>
-                <strong>Journey Date:</strong> ${date}<br>
-                <strong>Passengers:</strong> ${passengers}<br>
-                <strong>Fare per Person:</strong> ₹${farePerPerson}<br>
-                <strong>Total Fare:</strong> ₹${totalFare}<br>
-                <p>Demo booking details generated successfully!</p>
-                <small>This is a student demo. No real ticket is booked.</small>
-            `;
-
-            result.style.display = "block";
-        });
-    </script>
 
 </body>
 </html>
